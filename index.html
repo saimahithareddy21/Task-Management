@@ -1,0 +1,125 @@
+<!-- //index.html file directly available (not in the sub-folder) in the folder to link to github otherwise you need to do lot of extra overhead -->
+<!DOCTYPE html>
+<html lang="javascriptreact">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Document</title>
+</head>
+
+<body onload="loadInitialData()">
+  <div class="add_new_btn_mobile d-block d-sm-none">
+    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-new-modal"
+      data-bs-whatever="@mdo">
+      <i class="fa fa-plus"></i>&nbsp;Add Task
+    </button>
+  </div>
+    <!-- Add task modal -->
+  <div class="modal fade" id="add-new-modal" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-5" id="addNewModalLabel">Add New Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-2">
+              <label for="image-url" class="col-form-label">Image Url</label>
+              <input type="url" class="form-control" id="image-url" placeholder="http://images/urls">
+            </div>
+            <div class="mb-2">
+              <label for="task-title" class="col-form-label">Task Title</label>
+              <input class="form-control" id="task-title" placeholder="learn web dev" required></input>
+            </div>
+            <div class="mb-2">
+              <label for="task-type" class="col-form-label">Task Type</label>
+              <input class="form-control" id="task-type" placeholder="work..." required></input>
+            </div>
+            <div class="mb-2">
+              <label for="task-desc" class="col-form-label">Task Description</label>
+              <textarea class="form-control" id="task-desc" rows="4" placeholder="description of the task..."
+                required></textarea>
+            </div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+                type="submit"
+                type="button"
+                class="btn btn-primary savechanges-button"
+                onclick="handleSubmit()"
+                data-bs-dismiss="modal"
+              >
+                Save changes
+              </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-sm bg-body-tertiary" style="background-color: #e3f2fd">
+    <div class="container-fluid">
+      <a class="navbar-brand text-primary" href="#">TasKy</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+        </ul>
+
+        <button type="button" class="btn btn-primary mx-sm-3" data-bs-toggle="modal" data-bs-target="#add-new-modal"
+          data-bs-whatever="@mdo">
+          <i class="fa fa-plus"></i>&nbsp;Add Task
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- for task popUp -->
+  <div class="modal fade" id="show-tasks" tabindex="-1" aria-labelledby="showTaskLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Task Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body task_modal_body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- search section -->
+  <div class="container">
+    <section class="mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-7">
+          <div class="input-group shadow-lg rounded flex-nowrap">
+            <input type="text" class="form-control" placeholder="Search task..." id="basic-url"
+              aria-describedby="addon-wrapping" aria-label="search task" oninput="searchTask()">
+            <span class="input-group-text " id="basic-addon3"><i class="fa fa-search p-1"></i></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- tasks as cards -->
+  <section class="mt-4 container">
+    <div class="row task-contents">
+    </div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="scripts/index.js"></script>
+</body>
+
+</html>
